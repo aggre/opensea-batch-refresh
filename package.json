@@ -1,0 +1,16 @@
+{
+  "name": "opensea-batch-refresh",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "repository": "https://github.com/aggre/opensea-batch-refresh",
+  "author": "aggre <hiroyuki.aggre@gmail.com>",
+  "private": true,
+  "scripts": {
+    "start": "node ./",
+    "lint": "prettier --write ."
+  },
+  "dependencies": {
+    "prettier": "^2.7.1",
+    "puppeteer": "^17.0.0"
+  }
+}
