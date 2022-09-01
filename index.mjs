@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer'
 
 const queue = new PQueue({ concurrency: 1 })
 
-const MAX_TOKEN_ID = 80
+const MAX_TOKEN_ID = 3
 const BASE =
   'https://opensea.io/assets/matic/0x89904de861cded2567695271a511b3556659ffa2'
 const SELECTOR = '#main button:first-child'
@@ -35,7 +35,7 @@ const SELECTOR = '#main button:first-child'
 
   const results = await queue.addAll(promises)
 
-  results.forEach((result, i) => console.log(i + 1, result))
+  results.forEach(console.log)
 
   browser.close()
 })()
