@@ -18,14 +18,19 @@ const SELECTOR = '#main button:first-child'
   const promises = new Array(MAX_TOKEN_ID)
     .fill(null)
     .map((_, i) => async () => {
-      const id = i + 1
-      await page.goto(`${BASE}/${id}`)
-      console.log(id, 'page loaded')
-      await page.waitForSelector(SELECTOR)
-      console.log(id, 'refresh button found')
-      page.click(SELECTOR), console.log(id, 'clicked the refresh button')
-      await page.waitForSelector('[data-testid=toasts]')
-      console.log(id, 'finished')
+      try {
+        const id = i + 1
+        await page.goto(`${BASE}/${id}`)
+        console.log(id, 'page loaded')
+        await page.waitForSelector(SELECTOR)
+        console.log(id, 'refresh button found')
+        page.click(SELECTOR), console.log(id, 'clicked the refresh button')
+        await page.waitForSelector('[data-testid=toasts]')
+        console.log(id, 'finished')
+        return [id, 'success']
+      } catch (error) {
+        return [id, 'failed', error]
+      }
     })
 
   const results = await queue.addAll(promises)
