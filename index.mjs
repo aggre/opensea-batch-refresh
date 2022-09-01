@@ -35,7 +35,7 @@ const SELECTOR = '#main button:first-child'
 
   const results = await queue.addAll(promises)
 
-  results.forEach(console.log)
+  results.forEach((result) => console.log(result))
 
   browser.close()
 })()
