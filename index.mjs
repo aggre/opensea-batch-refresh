@@ -5,7 +5,7 @@ const queue = new PQueue({ concurrency: 1 })
 
 const MAX_TOKEN_ID = 120
 const BASE =
-  'https://opensea.io/assets/polygon/0x89904De861CDEd2567695271A511B3556659FfA2'
+  'https://opensea.io/assets/matic/0x89904de861cded2567695271a511b3556659ffa2'
 const MORE_SELECTOR = 'main button[aria-label="More"]'
 const REFRESH_SELECTOR = '.tippy-content button'
 
