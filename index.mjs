@@ -3,10 +3,11 @@ import puppeteer from 'puppeteer'
 
 const queue = new PQueue({ concurrency: 1 })
 
-const MAX_TOKEN_ID = 3
+const MAX_TOKEN_ID = 120
 const BASE =
-  'https://opensea.io/assets/matic/0x89904de861cded2567695271a511b3556659ffa2'
-const SELECTOR = '#main button:first-child'
+  'https://opensea.io/assets/polygon/0x89904De861CDEd2567695271A511B3556659FfA2'
+const MORE_SELECTOR = 'main button[aria-label="More"]'
+const REFRESH_SELECTOR = '.tippy-content button'
 
 ;(async () => {
   const browser = await puppeteer.launch({
@@ -22,9 +23,12 @@ const SELECTOR = '#main button:first-child'
         const id = i + 1
         await page.goto(`${BASE}/${id}`)
         console.log(id, 'page loaded')
-        await page.waitForSelector(SELECTOR)
+        await page.waitForSelector(MORE_SELECTOR)
+        console.log(id, 'more button found')
+        page.click(MORE_SELECTOR), console.log(id, 'clicked the more button')
+        await page.waitForSelector(REFRESH_SELECTOR)
         console.log(id, 'refresh button found')
-        page.click(SELECTOR), console.log(id, 'clicked the refresh button')
+        page.click(REFRESH_SELECTOR), console.log(id, 'clicked the refresh button')
         await page.waitForSelector('[data-testid=toasts]')
         console.log(id, 'finished')
         return [id, 'success']
